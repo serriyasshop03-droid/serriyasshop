@@ -1,0 +1,99 @@
+<div style="background:linear-gradient(145deg,#2b0059,#0a0020); color:white; padding:30px; border-radius:20px; max-width:480px; font-family:'Poppins', sans-serif; box-shadow:0 0 25px rgba(194,123,160,0.3); margin:auto; text-align:center; overflow:hidden; position:relative;">
+  <h2 style="color:#d8a6ff; text-transform:uppercase; letter-spacing:1px; animation:fadeIn 1s;">Convertisseur Euro → DZD</h2>
+  
+  <div style="margin-top:15px; text-align:left; animation:slideIn 1s;">
+    <label for="euro">Montant en € :</label><br>
+    <input type="number" id="euro" placeholder="Ex: 50" style="margin:8px 0; padding:10px; border-radius:8px; border:none; width:100%; font-size:1em;"><br>
+
+    <label for="typeProduit">Type de produit :</label><br>
+    <select id="typeProduit" style="margin:8px 0; padding:10px; border-radius:8px; border:none; width:100%; font-size:1em;">
+      <option value="Accessories">Accessoires</option>
+      <option value="Child Clothes">Vêtement enfant</option>
+      <option value="Bags">Sacs</option>
+      <option value="Shoes">Chaussures</option>
+      <option value="Pull">Pull</option>
+      <option value="Veste">Veste</option>
+      <option value="Manteau">Manteau</option>
+      <option value="Robe Soiree">Robe de soirée</option>
+    </select><br>
+  </div>
+
+  <button onclick="calculer()" style="background:#c27ba0; color:white; border:none; padding:12px 20px; border-radius:10px; margin-top:15px; width:100%; font-weight:bold; font-size:1.1em; cursor:pointer; transition:all 0.3s;" 
+    onmouseover="this.style.background='#e1a4d8'" 
+    onmouseout="this.style.background='#c27ba0'">
+    Calculer
+  </button>
+
+  <p id="resultat" style="margin-top:25px; font-size:1.2em; font-weight:500; animation:fadeIn 1s;"></p>
+
+  <style>
+    @keyframes fadeIn {
+      from {opacity:0; transform:translateY(10px);}
+      to {opacity:1; transform:translateY(0);}
+    }
+    @keyframes slideIn {
+      from {opacity:0; transform:translateX(-10px);}
+      to {opacity:1; transform:translateX(0);}
+    }
+  </style>
+
+  <script>
+    const taux = 275;
+
+    function calculer() {
+      let euro = parseFloat(document.getElementById('euro').value);
+      let type = document.getElementById('typeProduit').value;
+      let benef = 0;
+
+      switch(type) {
+        case "Accessories": 
+          benef = 500; 
+          break;
+        case "Child Clothes": 
+        case "Bags":
+          benef = 1200; 
+          break;
+        case "Shoes":
+          benef = 1500; 
+          break;
+        case "Pull":
+        case "Veste":
+          benef = 1400; 
+          break;
+        case "Manteau":
+        case "Robe Soiree":
+          benef = 1800; 
+          break;
+      }
+
+      if (isNaN(euro) || euro <= 0) {
+        document.getElementById('resultat').innerHTML = "⚠️ Veuillez entrer un montant valide.";
+        return;
+      }
+
+      let total = (euro * taux) + benef;
+
+      document.getElementById('resultat').innerHTML = `
+        <span style='color:#d8a6ff;'>${euro}€</span> (${type}) = 
+        <b style='color:#ffffff;'>${total.toLocaleString()} DZD</b>
+      `;
+      document.getElementById('resultat').style.animation = "fadeIn 0.8s";
+    }
+
+    // Lecture automatique depuis l’URL
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const euroParam = params.get('euro');
+      const typeParam = params.get('type');
+
+      if (euroParam) document.getElementById('euro').value = euroParam;
+      if (typeParam) {
+        document.getElementById('typeProduit').value = decodeURIComponent(typeParam);
+      }
+
+      if (euroParam && typeParam) {
+        calculer();
+      }
+    };
+  </script>
+</div>
