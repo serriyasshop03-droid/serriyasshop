@@ -1,10 +1,10 @@
 ---
 name: Custom issue template
 about: Describe this issue template's purpose here.
-title: ''
+title: 'SERRIYAS SHOP03'
 labels: ''
 assignees: ''
 
 ---
 
-pink and blue navy and purple
+colors: pink and blue navy and purple
