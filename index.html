@@ -1,85 +1,70 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Serriyas Shop | Convertisseur Euro → DZD</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serriyas Shop Convertisseur</title>
   <style>
-    /* 🌸 Full visible background image */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Poppins', sans-serif;
-      background: url('https://raw.githubusercontent.com/serriyasshop03-droid/SERRIYAS03SHOP/main/A_promotional_digital_graphic_design_image_feature.png?v=6') 
-        no-repeat center center fixed;
-      background-size: cover;
       color: white;
+      min-height: 100vh;
+      background: url('https://raw.githubusercontent.com/serriyasshop03-droid/serriyasshop/main/background.png') no-repeat center center fixed;
+      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
     }
 
-    /* 💫 Transparent converter card */
     .converter {
-      background: rgba(20, 0, 40, 0.4); /* More transparent */
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      box-shadow: 0 0 25px rgba(230, 150, 255, 0.5);
+      background: rgba(43, 0, 89, 0.85);
+      color: white;
       padding: 30px;
+      border-radius: 20px;
       max-width: 480px;
       width: 90%;
       text-align: center;
-      backdrop-filter: blur(3px);
-      animation: fadeIn 1s ease-in-out;
+      box-shadow: 0 0 25px rgba(194, 123, 160, 0.3);
     }
 
     h2 {
-      color: #f0c6ff;
+      color: #d8a6ff;
       text-transform: uppercase;
       letter-spacing: 1px;
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(255, 200, 255, 0.4);
+      animation: fadeIn 1s;
     }
 
-    label {
+    label, select, input {
       display: block;
-      margin-top: 15px;
-      text-align: left;
-      font-weight: 500;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 1em;
     }
 
     input, select {
-      margin-top: 8px;
       padding: 10px;
       border-radius: 8px;
       border: none;
-      width: 100%;
-      font-size: 1em;
-      outline: none;
-      background: rgba(255, 255, 255, 0.8);
-      color: #333;
+      margin-bottom: 10px;
     }
 
     button {
-      background: linear-gradient(90deg, #d484f7, #c27ba0);
+      background: linear-gradient(90deg, #c27ba0, #e1a4d8);
       color: white;
       border: none;
       padding: 12px 20px;
       border-radius: 10px;
-      margin-top: 15px;
-      width: 100%;
       font-weight: bold;
       font-size: 1.1em;
       cursor: pointer;
+      width: 100%;
       transition: all 0.3s;
-      box-shadow: 0 0 20px rgba(255, 200, 255, 0.5);
     }
 
     button:hover {
-      transform: scale(1.03);
-      box-shadow: 0 0 30px rgba(255, 230, 255, 0.7);
+      opacity: 0.85;
     }
 
     #resultat {
@@ -87,17 +72,16 @@
       font-size: 1.2em;
       font-weight: 500;
       animation: fadeIn 1s;
-      color: #fff;
     }
 
     @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
+      from {opacity:0; transform:translateY(10px);}
+      to {opacity:1; transform:translateY(0);}
     }
   </style>
 </head>
-
 <body>
+
   <div class="converter">
     <h2>Convertisseur Euro → DZD</h2>
 
@@ -107,7 +91,7 @@
     <label for="typeProduit">Type de produit :</label>
     <select id="typeProduit">
       <option value="Accessories">Accessoires</option>
-      <option value="Child Clothes">Vêtement enfant</option>
+      <option value="Child Clothes">Vêtements enfant</option>
       <option value="Baby Clothes">Vêtements nouveau-né</option>
       <option value="Bags">Sacs</option>
       <option value="Shoes">Chaussures</option>
@@ -131,9 +115,9 @@
 
       switch(type) {
         case "Accessories": benef = 500; break;
-        case "Child Clothes": benef = 1200; break;
-        case "Baby Clothes": benef = 800; break;
+        case "Child Clothes":
         case "Bags": benef = 1200; break;
+        case "Baby Clothes": benef = 800; break;
         case "Shoes": benef = 1500; break;
         case "Pull":
         case "Veste": benef = 1400; break;
@@ -149,10 +133,11 @@
       let total = (euro * taux) + benef;
 
       document.getElementById('resultat').innerHTML = `
-        <span style='color:#e7b3ff;'>${euro}€</span> (${type}) =
+        <span style='color:#d8a6ff;'>${euro}€</span> (${type}) = 
         <b style='color:#ffffff;'>${total.toLocaleString()} DZD</b>
       `;
     }
   </script>
+
 </body>
 </html>
