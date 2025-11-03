@@ -5,39 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Convertisseur Euro → DZD | Serriyas Shop</title>
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       height: 100vh;
       width: 100vw;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-image: url('https://github.com/serriyasshop03-droid/serriyasshop/blob/main/background.png'); /* your image URL */
-      background-size: 50%; /* ✅ shows the full image */
-      background-position: center top;
+      background-image: url('https://raw.githubusercontent.com/SerriyasShop03-droid/serriyasshop/main/background.png'); /* 🔥 Your full image */
+      background-size: contain; /* ✅ ensures the full image is visible */
+      background-position: center center;
       background-repeat: no-repeat;
-      background-color: #1f0935; /* fallback color */
+      background-color: #1a0033; /* fallback if image doesn't load */
       background-attachment: fixed;
       font-family: "Poppins", sans-serif;
+      overflow: auto;
     }
 
     .container {
-      background: rgba(80, 0, 90, 0.8);
+      background: rgba(70, 0, 90, 0.65);
       color: white;
       padding: 30px;
       border-radius: 20px;
-      max-width: 480px;
+      max-width: 460px;
       width: 90%;
       text-align: center;
       box-shadow: 0 0 25px rgba(194, 123, 160, 0.3);
       animation: fadeIn 1s;
+      backdrop-filter: blur(6px); /* ✨ softens behind */
     }
 
     h2 {
       color: #d8a6ff;
       text-transform: uppercase;
       letter-spacing: 1px;
+      margin-bottom: 10px;
     }
 
     label {
@@ -97,7 +104,7 @@
     <select id="typeProduit">
       <option value="Accessories">Accessoires</option>
       <option value="Child Clothes">Vêtement enfant</option>
-      <option value="Baby Clothes">Vêtement nouveau-né</option> <!-- ✅ Added here -->
+      <option value="Baby Clothes">Vêtement nouveau-né</option>
       <option value="Bags">Sacs</option>
       <option value="Shoes">Chaussures</option>
       <option value="Pull">Pull</option>
@@ -120,22 +127,15 @@
       let benef = 0;
 
       switch(type) {
-        case "Accessories": 
-          benef = 500; break;
-        case "Child Clothes": 
-          benef = 1200; break;
-        case "Baby Clothes": 
-          benef = 800; break; /* ✅ nouveau-né */
-        case "Bags":
-          benef = 1200; break;
-        case "Shoes":
-          benef = 1500; break;
+        case "Accessories": benef = 500; break;
+        case "Child Clothes": benef = 1200; break;
+        case "Baby Clothes": benef = 800; break;
+        case "Bags": benef = 1200; break;
+        case "Shoes": benef = 1500; break;
         case "Pull":
-        case "Veste":
-          benef = 1400; break;
+        case "Veste": benef = 1400; break;
         case "Manteau":
-        case "Robe Soiree":
-          benef = 1800; break;
+        case "Robe Soiree": benef = 1800; break;
       }
 
       if (isNaN(euro) || euro <= 0) {
@@ -145,24 +145,10 @@
 
       let total = (euro * taux) + benef;
       document.getElementById('resultat').innerHTML = `
-        <span style='color:#d8a6ff;'>${euro}€</span> (${type}) = 
+        <span style='color:#d8a6ff;'>${euro}€</span> (${type}) =
         <b style='color:#ffffff;'>${total.toLocaleString()} DZD</b>
       `;
     }
-
-    // Lecture automatique depuis l’URL
-    window.onload = function() {
-      const params = new URLSearchParams(window.location.search);
-      const euroParam = params.get('euro');
-      const typeParam = params.get('type');
-      if (euroParam) document.getElementById('euro').value = euroParam;
-      if (typeParam) {
-        document.getElementById('typeProduit').value = decodeURIComponent(typeParam);
-      }
-      if (euroParam && typeParam) {
-        calculer();
-      }
-    };
   </script>
 </body>
 </html>
