@@ -1,146 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Serriyas Shop Convertisseur</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      min-height: 100vh;
-      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACz+OHFAAAACXBIWXMAABYlAAAWJQFJUiTwAAAElElEQVR4nO3UQQ2AMAwAsDlyr5L3Q6lFXElIhYdmxgIAAAAAAAAAAAAAAAAAAABtOsu/erVx/9quAAAAAAAAAAAAAAAAAAAAAAD4XW+tAQAAAAAAAAAAAAAAAAAAAAAAf+UBAQAAAAAAAAAAAAAAAAAAAACg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAECg8AwBAAAAAAAAAAAAAAAAAAAAAEDgsAUAAAAAAAAAAAAAAAAAAAAAAED4V1sAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADALxkQEQAAAAAAAPwCuPp0CQAAAABJRU5ErkJggg==');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .converter {
-      background: rgba(43, 0, 89, 0.82);
-      color: white;
-      padding: 30px;
-      border-radius: 20px;
-      max-width: 480px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 0 25px rgba(194, 123, 160, 0.4);
-      backdrop-filter: blur(6px);
-    }
-
-    h2 {
-      color: #d8a6ff;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      animation: fadeIn 1s;
-    }
-
-    label, select, input {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-      font-size: 1em;
-    }
-
-    input, select {
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-bottom: 10px;
-    }
-
-    button {
-      background: linear-gradient(90deg, #c27ba0, #e1a4d8);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 1.1em;
-      cursor: pointer;
-      width: 100%;
-      transition: all 0.3s;
-    }
-
-    button:hover {
-      opacity: 0.85;
-    }
-
-    #resultat {
-      margin-top: 25px;
-      font-size: 1.2em;
-      font-weight: 500;
-      animation: fadeIn 1s;
-    }
-
-    @keyframes fadeIn {
-      from {opacity:0; transform:translateY(10px);}
-      to {opacity:1; transform:translateY(0);}
-    }
-  </style>
-</head>
-<body>
-
-  <div class="converter">
-    <h2>Convertisseur Euro → DZD</h2>
-
-    <label for="euro">Montant en € :</label>
-    <input type="number" id="euro" placeholder="Ex: 50">
-
-    <label for="typeProduit">Type de produit :</label>
-    <select id="typeProduit">
-      <option value="Accessories">Accessoires</option>
-      <option value="Child Clothes">Vêtements enfant</option>
-      <option value="Baby Clothes">Vêtements nouveau-né</option>
-      <option value="Bags">Sacs</option>
-      <option value="Shoes">Chaussures</option>
-      <option value="Pull">Pull</option>
-      <option value="Veste">Veste</option>
-      <option value="Manteau">Manteau</option>
-      <option value="Robe Soiree">Robe de soirée</option>
-    </select>
-
-    <button onclick="calculer()">Calculer</button>
-    <p id="resultat"></p>
-  </div>
-
-  <script>
-    const taux = 275;
-
-    function calculer() {
-      let euro = parseFloat(document.getElementById('euro').value);
-      let type = document.getElementById('typeProduit').value;
-      let benef = 0;
-
-      switch(type) {
-        case "Accessories": benef = 500; break;
-        case "Child Clothes":
-        case "Bags": benef = 1200; break;
-        case "Baby Clothes": benef = 800; break;
-        case "Shoes": benef = 1500; break;
-        case "Pull":
-        case "Veste": benef = 1400; break;
-        case "Manteau":
-        case "Robe Soiree": benef = 1800; break;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Convertisseur Euro → DZD</title>
+    <style>
+      /* Reset body margins and set background */
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('https://raw.githubusercontent.com/SerriyasShop03-droid/serriyasshop/main/background-baby.png'); /* 👈 replace with your image URL */
+        background-size: cover; /* makes the image fill entire screen */
+        background-position: center; /* centers the image */
+        background-repeat: no-repeat;
+        background-attachment: fixed; /* keeps it steady when scrolling */
+        font-family: "Poppins", sans-serif;
       }
 
-      if (isNaN(euro) || euro <= 0) {
-        document.getElementById('resultat').innerHTML = "⚠️ Veuillez entrer un montant valide.";
-        return;
+      .converter {
+        background: rgba(66, 24, 90, 0.85);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        text-align: center;
+        color: #fff;
+        max-width: 400px;
+        width: 100%;
       }
 
-      let total = (euro * taux) + benef;
+      h1 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #f4b8ff;
+      }
 
-      document.getElementById('resultat').innerHTML = `
-        <span style='color:#d8a6ff;'>${euro}€</span> (${type}) = 
-        <b style='color:#ffffff;'>${total.toLocaleString()} DZD</b>
-      `;
-    }
-  </script>
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
 
-</body>
+      button {
+        width: 100%;
+        background: linear-gradient(90deg, #e48aff, #f6a6d9);
+        border: none;
+        color: white;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      button:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="converter">
+      <h1>CONVERTISSEUR EURO → DZD</h1>
+      <label>Montant en € :</label>
+      <input type="number" id="montant" placeholder="Ex: 50" />
+      <label>Type de produit :</label>
+      <select id="produit">
+        <option value="accessoires">Accessoires</option>
+        <option value="vetement_normal">Vêtements (Classique)</option>
+        <option value="vetement_hiver">Vêtements (Hiver)</option>
+        <option value="vetement_enfant">Vêtements (Enfant)</option>
+        <option value="vetement_bebe">Vêtements (Nouveau-né 👶)</option>
+      </select>
+      <button onclick="convertir()">Calculer</button>
+      <p id="resultat"></p>
+    </div>
+
+    <script>
+      function convertir() {
+        const taux = 275;
+        const montant = parseFloat(document.getElementById("montant").value);
+        const produit = document.getElementById("produit").value;
+
+        if (isNaN(montant)) {
+          document.getElementById("resultat").innerText =
+            "Veuillez entrer un montant valide.";
+          return;
+        }
+
+        let benefice = 0;
+        switch (produit) {
+          case "accessoires":
+            benefice = 500;
+            break;
+          case "vetement_normal":
+            benefice = 1200;
+            break;
+          case "vetement_hiver":
+            benefice = 1800;
+            break;
+          case "vetement_enfant":
+            benefice = 1000;
+            break;
+          case "vetement_bebe":
+            benefice = 800;
+            break;
+        }
+
+        const total = montant * taux + benefice;
+        document.getElementById(
+          "resultat"
+        ).innerText = `Prix total estimé : ${total.toLocaleString()} DZD`;
+      }
+    </script>
+  </body>
 </html>
