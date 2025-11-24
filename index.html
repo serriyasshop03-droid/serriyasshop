@@ -110,7 +110,9 @@
       <option value="Shoes">Chaussures</option>
       <option value="Pull">Pull</option>
       <option value="Veste">Veste</option>
+      <option value="Pantalon">Pantalon</option>
       <option value="Manteau">Manteau</option>
+      <option value="Manteau Lourd">Manteau Lourd</option>
       <option value="Robe Soiree">Robe de soirée</option>
     </select>
 
@@ -120,7 +122,7 @@
   </div>
 
   <script>
-    const taux = 275;
+    const taux = 290;
 
     function calculer() {
       let euro = parseFloat(document.getElementById('euro').value);
@@ -128,16 +130,18 @@
       let benef = 0;
 
       switch(type) {
-        case "Accessories": benef = 500; break;
-        case "Makeup": benef = 700; break;
+        case "Accessories": benef = 600; break;
+        case "Makeup": benef = 800; break;
         case "Child Clothes": benef = 1200; break;
         case "Baby Clothes": benef = 800; break;
         case "Bags": benef = 1200; break;
         case "Shoes": benef = 1500; break;
-        case "Pull":
+        case "Pull": benef = 1300; break;
         case "Veste": benef = 1400; break;
-        case "Manteau":
-        case "Robe Soiree": benef = 1800; break;
+        case "Pants": benef = 1500; break;
+        case "Manteau": benef = 1800; break;
+        case "Manteau Lourd": benef = 2500; break;
+        case "Robe Soiree": benef = 2000; break;
       }
 
       if (isNaN(euro) || euro <= 0) {
