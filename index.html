@@ -108,12 +108,12 @@
       <option value="Baby Clothes">Vêtement nouveau-né</option>
       <option value="Bags">Sacs</option>
       <option value="Shoes">Chaussures</option>
-      <option value="Pull">Pull</option>
+      <option value="Hoodie">Pull</option>
       <option value="Veste">Veste</option>
-      <option value="Pantalon">Pantalon</option>
-      <option value="Manteau">Manteau</option>
-      <option value="Manteau Lourd">Manteau Lourd</option>
-      <option value="Robe Soiree">Robe de soirée</option>
+      <option value="Pants">Pantalon</option>
+      <option value="Coat">Manteau</option>
+      <option value="Heavy Coat">Manteau Lourd</option>
+      <option value="Night Dress">Robe de soirée</option>
     </select>
 
     <button onclick="calculer()">Calculer</button>
@@ -136,12 +136,12 @@
         case "Baby Clothes": benef = 800; break;
         case "Bags": benef = 1200; break;
         case "Shoes": benef = 1500; break;
-        case "Pull": benef = 1300; break;
+        case "Hoodie": benef = 1300; break;
         case "Veste": benef = 1400; break;
         case "Pants": benef = 1500; break;
-        case "Manteau": benef = 1800; break;
-        case "Manteau Lourd": benef = 2500; break;
-        case "Robe Soiree": benef = 2000; break;
+        case "Coat": benef = 1800; break;
+        case "Heavy Coat": benef = 2500; break;
+        case "Night Dress": benef = 2000; break;
       }
 
       if (isNaN(euro) || euro <= 0) {
